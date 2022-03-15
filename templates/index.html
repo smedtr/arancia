@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Bootstrap Django Project</title>
+
+  
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+   <!-- Google Fonts Roboto -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+   <!-- <!-- Bootstrap 5 CSS -->
+   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />  
+   <!-- Custom styles -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+</head>
+
+<body>
+    
+  <div style="height: 100vh">
+    <div class="flex-center flex-column">     
+      <h1 class="col-md-7 mb-4">Bootstrap loves Django <i class="fa fa-heartbeat text-danger"></i></h1>
+    </div>
+   </div>
+
+  
+   <!-- Bootstrap 5 JS -->
+   <script type="text/javascript" src="{% static 'js/bootstrap.bundle.js' %}"></script>
+   <!-- Custom scripts -->
+   <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+  <script>
+    new WOW().init();
+  </script>
+  
+ 
+</body>
+</html>
