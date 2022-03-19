@@ -139,3 +139,8 @@ LOGOUT_URL = 'logout'
 
 # EMAIL 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Pillow for upload files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
