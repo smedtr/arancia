@@ -1,11 +1,30 @@
 # blog/views.py
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 
+
 from .models import Post, Comment
-from .forms import EmailPostForm, CommentForm
+from .forms import EmailPostForm, CommentForm, PostForm
+
+
+###@login_required
+def post_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user        
+            post.save()
+            return redirect('post_detail', post=post.slug,
+                             publish__year=post.publish.year,
+                             publish__month=post.publish.month,
+                             publish__day=post.publish.day)
+    else:
+        form = PostForm()
+    return render(request, 'blog/post/edit.html', {'form': form})
+
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, slug=post,
@@ -13,7 +32,7 @@ def post_detail(request, year, month, day, post):
                                    publish__year=year,
                                    publish__month=month,
                                    publish__day=day)
-
+    
     # List of active comments for this post
     comments = post.comments.filter(active=True)
     new_comment = None

@@ -17,7 +17,7 @@ db.sqlite3*
 #Static examples
 static/examples
 static/js/base
-static/css/base
+#static/css/base
 
 # If you are using PyCharm # 
 # User-specific stuff

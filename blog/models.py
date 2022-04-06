@@ -1,8 +1,10 @@
 # blog/models.py_
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 from django.urls import reverse
 from django.contrib.auth.models import User
+
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -38,6 +40,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            pub_date = str(self.publish.year) + "-" + str(self.publish.month) + "-" + str(self.publish.day)
+            self.slug = slugify( pub_date + "-" + self.title)
+        super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('blog:post_detail',
