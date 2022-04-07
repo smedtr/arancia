@@ -62,11 +62,12 @@ class PostModelTest(TestCase):
     @override_settings(DEBUG=True)
     def test_if_post_is_available(self):
         login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+        author = User.objects.get(id=1)
         # Create published post
         Post.objects.create(
                 title='Hoe laat je de poes beneden slapen',
                 body= 'Het is een challenge om je poes beneden te laten slapen. Waarom zou je willen dat er gedurende de nacht een miauw is',
-                author=1,
+                author=author,
                 status='Published',                               
         )
         response = self.client.get('/blog/')

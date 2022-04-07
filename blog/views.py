@@ -3,13 +3,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
 
 
 from .models import Post, Comment
 from .forms import EmailPostForm, CommentForm, PostForm
 
 
-###@login_required
+#@login_required
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)

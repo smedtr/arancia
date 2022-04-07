@@ -170,3 +170,6 @@ LOGGING = {
         },
     },
 }
+
+# Posts settings
+ARTICLE_TITLE_MAX_LENGTH=200

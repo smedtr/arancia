@@ -9,13 +9,13 @@
 </head>
 <body>
   <div id="header">
-    <span class="logo">Bookmarks</span>
+    <span class="logo">Articles</span>
 
     {% if request.user.is_authenticated %}
-      <ul class="menu">        
-        <li {% if section == "dashboard" %}class="selected"{% endif %}>
-          <a href="{% url "dashboard" %}">My dashboard</a>
-        </li>
+      <ul class="menu">
+        <li {% if section == "articles" %}class="selected"{% endif %}>
+          <a href="{% url "posts:article-list" %}">My articles</a>
+        </li>        
         <li {% if section == "images" %}class="selected"{% endif %}>
           <a href="#">Images</a>
         </li>
