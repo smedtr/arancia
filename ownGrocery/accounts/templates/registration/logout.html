@@ -1,0 +1,33 @@
+<!--accounts/templates/registration/logout.html-->
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+{% include 'includes/navbar.html' %}
+
+<h2>Login</h2>
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1 class="mt-5">Logout</h1>
+
+        Hello, {{ user.username|default:'Guest' }}!
+
+        <div>
+            {% if user.is_authenticated %}
+                Hi {{ user.username }}!
+                <p><a href="{% url 'logout' %}">Log Out</a></p>
+            {% else %}
+                <p>You are not logged in</p>
+                <a href="{% url 'login' %}">Log In</a>
+            {% endif %}
+        </div>
+
+        <a href="{% url 'dashboard' %}">Back to dashboard</a>
+
+    </div>
+</main>
+
+{% include 'includes/footer.html' %}  
+{% endblock %}
+

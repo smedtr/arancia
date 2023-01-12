@@ -1,0 +1,33 @@
+https://stackoverflow.com/questions/70978302/django-hierarchy-model-query
+
+Zie ook : https://www.fullstackpython.com/django-db-models-datefield-examples.html
+Zie ook voor admin : https://www.nickmccullum.com/customize-django-admin-area-python/
+Zie ook voor many to many met through : https://ilovedjango.com/django/models-and-databases/django-through-many-to-many/
+
+----------------------------------------------------------------------
+https://ilovedjango.com/django/models-and-databases/django-through-many-to-many/
+from django.db import models
+
+class Student(models.Model):
+    name = models.CharField(max_length=200)
+
+
+class Course(models.Model):
+    name = models.CharField(max_length=200)
+    students = models.ManyToManyField(Student, related_name="courses", through="Enrollment")
+
+
+class Enrollment(models.Model):
+    student = models.ForeignKey(Student, related_name="enrollments", on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, related_name="enrollments", on_delete=models.CASCADE)
+    date = models.DateField()
+    grade = models.CharField(max_length=1, blank=True, null=True)
+
+----------------------------------------------------------------------
+
+Welke data wil ik zien : 
+    - ik log me in als worker : 
+        - dus ne query op worker. En dat geeft mij 1 record. Vandaag geen koppeling met de account.
+        - dan : 
+            - check of hij manager is, dan ook opvragen alle medewerkers die eraan gekoppeld zijn. 
+            - 

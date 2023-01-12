@@ -1,0 +1,39 @@
+<!--accounts/templates/registration/register.html-->
+
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+{% include 'includes/navbar.html' %}
+
+<h2>Register</h2>
+
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1 class="mt-5">Register</h1>
+        <div class="row my-5">
+            <div class="col-md-6">
+                <form action="/register/" method="post" class="form">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    {% endbuttons %}
+                </form>
+            </div>
+        </div>
+
+
+
+        <a href="{% url 'dashboard' %}">Back to dashboard</a>
+
+    </div>
+</main>
+
+{% include 'includes/footer.html' %}  
+{% endblock %}
+
+
+
+

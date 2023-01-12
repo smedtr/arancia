@@ -1,0 +1,37 @@
+<!--accounts/templates/registration/login.html-->
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+{% include 'includes/navbar.html' %}
+
+<h2>Login</h2>
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1 class="mt-5">Login</h1>
+
+        Hello, {{ user.username|default:'Guest' }}!
+
+        <div class="row my-5">
+            <div class="col-md-3">
+                <form action="/accounts/login/" method="post" class="form">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    {% endbuttons %}
+                </form>
+            </div>
+        </div>
+
+       
+        
+        <a href="{% url 'dashboard' %}">Back to dashboard</a>
+
+    </div>
+</main>
+
+{% include 'includes/footer.html' %}  
+{% endblock %}
+

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+{% include 'includes/navbar.html' %}
+
+<main class="flex-shrink-0">
+    <div class="container">
+      <h1 class="mt-5">Sticky footer with fixed navbar</h1>
+      <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
+      <p>Back to <a href="../examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
+      <div class="row my-5">
+        <div class="col-md-12">
+            <form action="/contact/" method="post" class="form">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% buttons %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+    </div>
+  </main>
+    
+{% include 'includes/footer.html' %}    
+{% endblock %}
+
