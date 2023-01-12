@@ -1,6 +1,6 @@
 Repo for integrating Django with Bootstrap5 layout.
 
-Github : https://github.com/smedtr/ContactForm
+Github : https://github.com/smedtr/arancia 
 
 Sources : 
     For the BS5 see : https://ngangasn.com/how-to-use-bootstrap-5-with-django-the-right-way/
