@@ -3,6 +3,7 @@ from datetime import date, datetime
 from django.utils import timezone
 from django.utils.timezone import get_current_timezone, make_aware, now
 from django.db.models import Q
+from django.conf import settings
 
 # Create your models here.
 
@@ -142,7 +143,8 @@ class Worker(models.Model):
         (KYNDRYL_BE, 'Kyndryl BE'),
         (PI_SQUARE, 'PI-SQUARE'),       
     )
-    
+    #account = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    account = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     company = models.CharField(max_length=7,choices=COMPANY_CODE, db_index=True)
