@@ -32,7 +32,7 @@ class WorkerQuerySet(models.QuerySet):
 
     def no_of_current_workers(self):  
         # current date       
-        now = timezone.now()                   
+        now = timezone.now()                           
         # Example 6  https://www.fullstackpython.com/django-utils-timezone-now-examples.html
         tz = get_current_timezone()
         # date taken = 1 Feb 2023
@@ -72,7 +72,7 @@ class WorkerQuerySet(models.QuerySet):
                                     ending_at__isnull=True) |
                                     Q(is_active=True, 
                                     starting_at__lte=ref_date,
-                                    ending_at__gte=ref_date)).values_list("name","company","description","starting_at","ending_at")
+                                    ending_at__gte=ref_date)).values_list("id","name","company","description","starting_at","ending_at")
         return active_workers
 
     def get_supervisor_company(self, obj):
@@ -88,10 +88,25 @@ class WorkerSupervisorQuerySet(models.QuerySet):
         get_supervisor = self.filter(worker=obj.id).values_list('supervisor__employee__name')        
         return get_supervisor   
 
+    
     def get_supervised_team(self, obj):
         get_supervised_team = self.filter(supervisor=obj.id).values_list('worker__name')             
         return get_supervised_team        
     
+
+class SupervisorQuerySet(models.QuerySet):
+    def is_supervisor(self,obj):
+        # self bevat alle Supervisor
+        # obj bevat de employee   
+        # De call zelf kan gecombineerd worden met 
+        # Supervisor.objects.is_supervisor(Worker.objects.get_active_workers().filter(id=5))
+       
+        mgr_id = list(obj.values_list('id', flat = True))[0]        
+        if(self.filter(employee=mgr_id).count() > 0):
+            return True
+        else : 
+            return False 
+
 
 # OrgUnit, Employee, Organisation
 class OrgUnit(models.Model):
@@ -191,6 +206,8 @@ class Supervisor(models.Model):
 
     def __str__(self):
         return self.employee.name
+
+    objects = SupervisorQuerySet.as_manager()
 
 class WorkerSupervisor(models.Model):
     # CHOICES
