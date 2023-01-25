@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'accounts',
     'contact',
     'teams',
+    'objectives',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
