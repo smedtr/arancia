@@ -13,6 +13,10 @@ Sources :
         
 
 Todo : 
+    TODO : Objectives, 3 tabellen : 
+        - obj_details : met omschrijving, type, owner. (ObjectiveItems)
+        - obj_master die de obj_details koppelt en zet welke obj_details toebehoren aan een bepaalde cyclus/sprint en assignee (Objective)
+        - obj_details_review : die toelaat om scores, commentaren te doen per obj_details (ObjectiveResult)
 	OK : Teams applicaties : table teammembers, managers, teams (python manage.py startapp teams)
     OK : Fatsoeneren van de login/logout/register html
 	OK : Login/Logout scherm gekoppeld aan accounts
